@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
     
     public Target target {
-        get => m_TargetEnum;
         set {
             switch (value) {
                 case Target.None:
@@ -15,6 +14,10 @@ public class CameraController : MonoBehaviour {
                 case Target.Player:
                     m_TargetEnum = value;
                     m_Target = FindObjectOfType<PlayerController>().transform;
+                    if (!m_Target) {
+                        m_TargetEnum = Target.None;
+                        m_Target = null;
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(value), value, "Invalid Target");
@@ -36,7 +39,7 @@ public class CameraController : MonoBehaviour {
     }
 
     private void Update() {
-        if (m_TargetEnum == Target.None) return;
+        if (!m_Target) return;
         var targetPosition = m_Target.position;
         var cameraTransform = transform;
         cameraTransform.position = new Vector3(targetPosition.x, targetPosition.y, cameraTransform.position.z);
