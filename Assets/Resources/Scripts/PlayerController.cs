@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnMove(InputValue inputValue) {
-        Debug.Log("Movement input");
         m_Movement = inputValue.Get<Vector2>();
     }
 
