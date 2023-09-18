@@ -13,8 +13,11 @@ public class CameraController : MonoBehaviour {
                     break;
                 case Target.Player:
                     m_TargetEnum = value;
-                    m_Target = FindObjectOfType<PlayerController>().transform;
-                    if (!m_Target) {
+                    var playerController = FindObjectOfType<PlayerController>();
+                    if (playerController) {
+                        m_TargetEnum = value;
+                        m_Target = playerController.transform;
+                    } else {
                         m_TargetEnum = Target.None;
                         m_Target = null;
                     }
