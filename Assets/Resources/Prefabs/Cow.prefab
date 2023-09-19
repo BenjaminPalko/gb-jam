@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cow
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 816fcd2faa8215043a10da516b538635, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 816fcd2faa8215043a10da516b538635, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1679302767
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 816fcd2faa8215043a10da516b538635, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.79
@@ -155,4 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9cede41265448c8ed57dbf8e9c4478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immobilize: 0
+  liftSpeed: 1
+  fallSpeed: 1
+  idleAnimationSpeed: 0.25
+  floatingAnimationSpeed: 0
