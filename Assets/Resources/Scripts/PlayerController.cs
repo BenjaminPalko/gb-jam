@@ -11,9 +11,9 @@ namespace Scripts {
 		[SerializeField] private Vector3 cargoOffset;
 		private readonly List<Abductable> m_Abductables = new();
 		private Abductable m_Abductable;
-		private bool m_Abduction;
 
 		private Collider2D m_Collider;
+		private bool m_Immobilize;
 		private Vector3 m_Movement;
 
 		private void Awake() {
@@ -21,8 +21,7 @@ namespace Scripts {
 		}
 
 		private void Update() {
-			if (m_Movement != Vector3.zero && !m_Abduction) Movement();
-			else if (m_Abduction && m_Abductable) Abduct();
+			if (m_Movement != Vector3.zero && !m_Immobilize) Movement();
 		}
 
 		private void OnDrawGizmos() {
@@ -46,8 +45,8 @@ namespace Scripts {
 		}
 
 		public void OnA(InputValue inputValue) {
-			m_Abduction = inputValue.isPressed;
-			if (m_Abduction) {
+			m_Immobilize = inputValue.isPressed;
+			if (m_Immobilize) {
 				var minDistance = Mathf.Infinity;
 				var position = m_Collider.transform.position;
 				foreach (var abductable in m_Abductables) {
@@ -58,13 +57,13 @@ namespace Scripts {
 					m_Abductable = abductable;
 				}
 
-				if (m_Abductable) m_Abductable.immobilize = true;
-			} else {
-				if (m_Abductable) m_Abductable.immobilize = false;
+				if (m_Abductable) m_Abductable.StartAbduction(transform.position + cargoOffset);
+			} else if (m_Abductable && !m_Immobilize) {
+				m_Abductable.StopAbduction();
 				m_Abductable = null;
 			}
 
-			beam.SetActive(m_Abduction);
+			beam.SetActive(m_Immobilize);
 		}
 
 		public void OnB() {
@@ -84,15 +83,6 @@ namespace Scripts {
 			position = Vector3.MoveTowards(position, position + new Vector3(m_Movement.x, m_Movement.y, position.z),
 				Time.deltaTime * movementSpeed);
 			transform.position = position;
-		}
-
-		private void Abduct() {
-			var position = transform.position + cargoOffset;
-			var abductablePosition = m_Abductable.transform.position;
-			abductablePosition = Vector3.MoveTowards(abductablePosition, position, Time.deltaTime * abductionSpeed);
-			var distance = (abductablePosition - position).magnitude;
-			if (distance < 0.10f) Destroy(m_Abductable);
-			else m_Abductable.transform.position = abductablePosition;
 		}
 	}
 }

@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8248237869367527251, guid: 771f803a04e6a554bbcc3bd124545d3a, type: 3}
+      propertyPath: cargoOffset.y
+      value: -0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -449,6 +453,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 122936363919499212, guid: a39e151d5a00bc640a6c5142adf8709a, type: 3}
+      propertyPath: fallSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 122936363919499212, guid: a39e151d5a00bc640a6c5142adf8709a, type: 3}
+      propertyPath: floatingAnimationSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 1643724492777779952, guid: a39e151d5a00bc640a6c5142adf8709a, type: 3}
       propertyPath: m_Name
       value: Cow
