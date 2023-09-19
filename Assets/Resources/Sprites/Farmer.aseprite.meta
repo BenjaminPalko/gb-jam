@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a912afdd975383d4ca3896033a7764e2
+guid: 2abaf098aecabb1488d8e3c2831cc535
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -79,7 +79,7 @@ ScriptedImporter:
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
-    generateAnimationClips: 1
+    generateAnimationClips: 0
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
@@ -91,11 +91,11 @@ ScriptedImporter:
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
-    generateAnimationClips: 1
+    generateAnimationClips: 0
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638306397948104970
+  platformSettingsDirtyTick: 638306650501194888
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,18 +119,78 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: ship-BASE
+  - name: Farmer_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: -0.16666667}
+    pivot: {x: 0.4615385, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 99
+      width: 13
+      height: 15
+    spriteID: 8ca78d70fd4d30b409a81440bb89bd4e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 99}
+  - name: Farmer_Frame_1
+    originalName: 
+    pivot: {x: 0.4615385, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 75
+      width: 13
+      height: 16
+    spriteID: 4e920d23d84fb1a4abf4018c42eded0b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 75}
+  - name: Farmer_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 28
+      width: 16
+      height: 15
+    spriteID: f50f58e2af4c29e4fa496ca0767334f3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 28}
+  - name: Farmer_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 30
-      height: 12
-    spriteID: 8970931db35d1a4439fa391b8116536a
+      width: 16
+      height: 16
+    spriteID: 718899f23a6452146a4d2ec22f06cfcf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,23 +199,75 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Farmer_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 51
+      width: 14
+      height: 16
+    spriteID: 99d5267fd6dc14c41ac5fe3e5a351666
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 51}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1603678122
-    name: ship-BASE
+    guid: -1886729793
+    name: Farmer
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: ship-BASE
+    - name: Farmer_Frame_0
       frameIndex: 0
       cellRect:
+        x: 2
+        y: 0
+        width: 13
+        height: 15
+      spriteId: 8ca78d70fd4d30b409a81440bb89bd4e
+    - name: Farmer_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 2
+        y: 0
+        width: 13
+        height: 16
+      spriteId: 4e920d23d84fb1a4abf4018c42eded0b
+    - name: Farmer_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 0
+        y: 0
+        width: 16
+        height: 15
+      spriteId: f50f58e2af4c29e4fa496ca0767334f3
+    - name: Farmer_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      spriteId: 718899f23a6452146a4d2ec22f06cfcf
+    - name: Farmer_Frame_4
+      frameIndex: 4
+      cellRect:
         x: 1
-        y: 2
-        width: 30
-        height: 12
-      spriteId: 8970931db35d1a4439fa391b8116536a
+        y: 0
+        width: 14
+        height: 16
+      spriteId: 99d5267fd6dc14c41ac5fe3e5a351666
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -209,4 +321,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 32, y: 16}
+  canvasSize: {x: 16, y: 16}
