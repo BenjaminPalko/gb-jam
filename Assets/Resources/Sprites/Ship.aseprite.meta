@@ -72,7 +72,7 @@ ScriptedImporter:
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
     fileImportMode: 1
-    importHiddenLayers: 1
+    importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 0
@@ -84,7 +84,7 @@ ScriptedImporter:
     addShadowCasters: 0
   asepriteImporterSettings:
     fileImportMode: 1
-    importHiddenLayers: 1
+    importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 0
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638306411018261713
+  platformSettingsDirtyTick: 638306501022745823
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,7 +119,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: ship-BASE
+  - name: Ship
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 4
       width: 30
       height: 12
-    spriteID: 8970931db35d1a4439fa391b8116536a
+    spriteID: 7c18cfa83dcac974fbccd6b048337305
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,20 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1603678122
-    name: ship-BASE
+    guid: 2075328016
+    name: Ship
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: ship-BASE
+    - name: Ship
       frameIndex: 0
       cellRect:
         x: 1
         y: 2
         width: 30
         height: 12
-      spriteId: 8970931db35d1a4439fa391b8116536a
+      spriteId: 7c18cfa83dcac974fbccd6b048337305
     linkedCells: []
     parentIndex: -1
   platformSettings:
