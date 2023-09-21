@@ -67,4 +67,8 @@ public class CowBehaviour : MonoBehaviour
 		}
 	}
 
+	void OnDestroy() {
+		StopCoroutine(NewHeading());
+	}
+
 }
