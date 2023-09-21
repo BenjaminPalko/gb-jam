@@ -179,6 +179,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 48, y: 4}
+  - name: Pitchfork_Frame_3
+    originalName: 
+    pivot: {x: 0.4666667, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 28
+      width: 15
+      height: 10
+    spriteID: de1b2febac3a75b46968e36e154d8f9b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 28}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -212,6 +232,14 @@ ScriptedImporter:
         width: 10
         height: 15
       spriteId: 551070e21f6c72748ac3cd78f0f73ae9
+    - name: Pitchfork_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 1
+        y: 3
+        width: 15
+        height: 10
+      spriteId: de1b2febac3a75b46968e36e154d8f9b
     linkedCells: []
     parentIndex: -1
   platformSettings:
