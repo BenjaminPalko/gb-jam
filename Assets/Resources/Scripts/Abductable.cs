@@ -1,17 +1,14 @@
 ﻿using UnityEngine;
 
 namespace Scripts {
-	[RequireComponent(typeof(Collider2D), typeof(Rigidbody2D), typeof(Animator))]
+	[RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
 	public class Abductable : MonoBehaviour {
 		[SerializeField] private float liftSpeed = 1.0f;
 		[SerializeField] private float fallSpeed = 1.0f;
 
-
 		private Vector3 m_AttractorPosition;
 		private bool m_Immobilize;
 		private Vector3 m_OriginalPosition;
-
-
 
 		private void Update() {
 			if (m_AttractorPosition != Vector3.zero && m_Immobilize) Attract();
