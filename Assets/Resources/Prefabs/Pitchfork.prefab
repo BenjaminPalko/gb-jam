@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pitchfork
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 0cd9b0003832aab478bf92c013bf40cf, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 0cd9b0003832aab478bf92c013bf40cf, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -475167967
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 0cd9b0003832aab478bf92c013bf40cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -108,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   despawnDelay: 2
-  collisionDeviation: 1
+  collisionDeviation: 5
 --- !u!50 &4236717657459217680
 Rigidbody2D:
   serializedVersion: 4
