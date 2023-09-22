@@ -6,22 +6,12 @@ namespace Scripts {
 		[SerializeField] private float liftSpeed = 1.0f;
 		[SerializeField] private float fallSpeed = 1.0f;
 
-		[SerializeField] private float idleAnimationSpeed = 0.25f;
-		[SerializeField] private float floatingAnimationSpeed;
 
-		private Animator m_Animator;
 		private Vector3 m_AttractorPosition;
 		private bool m_Immobilize;
 		private Vector3 m_OriginalPosition;
 
 
-		private void Awake() {
-			m_Animator = GetComponent<Animator>();
-		}
-
-		private void Start() {
-			m_Animator.speed = idleAnimationSpeed;
-		}
 
 		private void Update() {
 			if (m_AttractorPosition != Vector3.zero && m_Immobilize) Attract();
@@ -36,7 +26,6 @@ namespace Scripts {
 			m_OriginalPosition = transform.position;
 			m_AttractorPosition = saucerPosition;
 			m_Immobilize = true;
-			m_Animator.speed = floatingAnimationSpeed;
 		}
 
 		public void StopAbduction() {
@@ -64,7 +53,6 @@ namespace Scripts {
 
 		private void Ground() {
 			m_Immobilize = false;
-			m_Animator.speed = idleAnimationSpeed;
 		}
 	}
 }
