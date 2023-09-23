@@ -6,11 +6,12 @@ namespace Scripts {
 	public class PlayerController : MonoBehaviour {
 		[SerializeField] private float movementSpeed = 1.0f;
 		[SerializeField] private Vector3 cargoOffset;
-		private Abductable m_Abductable;
 
-		private bool m_Immobilize;
+		private Abductable m_Abductable;
 		private Vector3 m_Movement;
 		private TargetReticle m_TargetReticle;
+
+		public bool immobilize { get; private set; }
 
 		private void Awake() {
 			m_TargetReticle = GetComponentInChildren<TargetReticle>();
@@ -18,7 +19,7 @@ namespace Scripts {
 		}
 
 		private void Update() {
-			if (m_Movement != Vector3.zero && !m_Immobilize) Movement();
+			if (m_Movement != Vector3.zero && !immobilize) Movement();
 		}
 
 		private void OnDrawGizmos() {
@@ -32,8 +33,8 @@ namespace Scripts {
 		}
 
 		public void OnA(InputValue inputValue) {
-			m_Immobilize = inputValue.isPressed;
-			if (m_Immobilize) {
+			immobilize = inputValue.isPressed;
+			if (immobilize) {
 				var minDistance = Mathf.Infinity;
 				var position = m_TargetReticle.transform.position;
 				foreach (var abductable in m_TargetReticle.Abductables) {
@@ -45,7 +46,7 @@ namespace Scripts {
 				}
 
 				if (m_Abductable) m_Abductable.StartAbduction(transform.position + cargoOffset);
-			} else if (m_Abductable && !m_Immobilize) {
+			} else if (m_Abductable && !immobilize) {
 				m_Abductable.StopAbduction();
 				m_Abductable = null;
 			}

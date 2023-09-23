@@ -2,80 +2,86 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CowBehaviour : MonoBehaviour
-{
+namespace Scripts {
+	[RequireComponent(typeof(SpriteRenderer), typeof(Animator), typeof(NavMeshAgent))]
+	public class CowBehaviour : MonoBehaviour {
+		private static readonly int Speed = Animator.StringToHash("speed");
+		private static readonly int Graze = Animator.StringToHash("graze");
 
-	NavMeshAgent agent;
-	SpriteRenderer spriteRenderer; 
-	Vector3 destination;
-	Animator animator;
-	IEnumerator movementCoroutine;
+		[SerializeField] private int wanderRadius = 4;
+		private Animator m_Animator;
+		private NavMeshAgent m_NavMeshAgent;
 
-	public int radius = 4;
+		private SpriteRenderer m_SpriteRenderer;
+		private IEnumerator m_WanderCoroutine;
 
-	private float directionChangeInterval = 0.5f;
+		private void Awake() {
+			m_NavMeshAgent = GetComponent<NavMeshAgent>();
+			m_SpriteRenderer = GetComponent<SpriteRenderer>();
+			m_Animator = GetComponent<Animator>();
+		}
 
-	float minimumSpeed = 0.5f;
+		private void Start() {
+			m_Animator.SetInteger(Speed, 0);
+			m_NavMeshAgent.updateUpAxis = false;
+			m_NavMeshAgent.updateRotation = false;
+			StartWander();
+		}
 
-	
-	
-	void Awake() {
-		agent = GetComponent<NavMeshAgent>();
-		spriteRenderer = GetComponent<SpriteRenderer>();
-		animator = GetComponent<Animator>();
-	}
 
-	void Start ()
-	{
-		animator.SetInteger("speed", 0);
-		agent.updateUpAxis = false;
-		agent.updateRotation = false;
-		movementCoroutine = NewHeading();
-		StartCoroutine(movementCoroutine);
-	}
-	
+		private void Update() {
+			if (m_NavMeshAgent.velocity != Vector3.zero) {
+				m_SpriteRenderer.flipX = m_NavMeshAgent.velocity.x < 0;
+			}
+		}
 
-	void Update ()
-	{
-		if(agent.velocity.magnitude > minimumSpeed){ 
-			spriteRenderer.flipX = agent.velocity.x < 0;
-		}	
-		
-	}
+		private void OnEnable() {
+			StartWander();
+		}
 
-	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) {
-        Vector3 randDirection = Random.onUnitSphere * dist;
-        randDirection += origin;
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+		private void OnDisable() {
+			StopWander();
+		}
 
-        return navHit.position;
-    }
-    
-	IEnumerator NewHeading (){
-		while(true) {
-			CalculateNewDirection();
-			animator.SetInteger("speed", 1);
-			agent.SetDestination(destination);
-			directionChangeInterval = Random.Range(2f, 5f);
-			Debug.Log(animator.GetInteger("speed"));
-			Debug.Log(animator.GetInteger("speed"));
+		private void OnDestroy() {
+			StartWander();
+		}
 
-			yield return new WaitUntil(() => agent.velocity.magnitude == 0);
-			
-			animator.SetInteger("speed", 0);
-			yield return new WaitForSeconds(directionChangeInterval) ;
+		private static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) {
+			var randDirection = Random.insideUnitSphere * dist;
+			randDirection += origin;
+			return NavMesh.SamplePosition(randDirection, out var navHit, dist, layermask) ? navHit.position : origin;
+		}
+
+		private IEnumerator Wander() {
+			while (true) {
+				var destination = RandomNavSphere(transform.position, wanderRadius, -1);
+				if (destination != transform.position) {
+					m_NavMeshAgent.SetDestination(destination);
+				}
+
+				yield return new WaitUntil(() => m_NavMeshAgent.velocity != Vector3.zero);
+				m_Animator.SetInteger(Speed, 1);
+				yield return new WaitUntil(() => m_NavMeshAgent.velocity == Vector3.zero);
+				m_Animator.SetInteger(Speed, 0);
+				var wait = Random.Range(2.0f, 5.0f);
+				yield return new WaitForSecondsRealtime(wait / 2);
+				m_Animator.SetTrigger(Graze);
+				yield return new WaitForSecondsRealtime(wait / 2);
+			}
+		}
+
+		private void StartWander() {
+			if (m_WanderCoroutine != null) return;
+			m_WanderCoroutine = Wander();
+			StartCoroutine(m_WanderCoroutine);
+		}
+
+		private void StopWander() {
+			if (m_WanderCoroutine == null) return;
+			StopCoroutine(m_WanderCoroutine);
+			m_NavMeshAgent.ResetPath();
+			m_WanderCoroutine = null;
 		}
 	}
-
-	void CalculateNewDirection() {
-		if(agent.velocity.magnitude < minimumSpeed){
-			destination = RandomNavSphere(transform.position, radius, -1);
-		}
-	}
-
-	void OnDestroy() {
-		StopCoroutine(movementCoroutine);
-	}
-
 }
