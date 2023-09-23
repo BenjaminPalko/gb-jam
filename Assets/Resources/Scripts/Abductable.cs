@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ScoreSystem;
+using UnityEngine;
 
 namespace Scripts {
 	[
@@ -10,7 +11,9 @@ namespace Scripts {
 		[SerializeField] private float liftSpeed = 1.0f;
 		[SerializeField] private float fallSpeed = 1.0f;
 
-		[SerializeField] private float scareRadius = 4.0f;
+		[SerializeField] private float scareRadius = 5.0f;
+
+		public Score playerScore;
 
 		private Animator m_Animator;
 		private Vector3 m_AttractorPosition;
@@ -61,7 +64,10 @@ namespace Scripts {
 			abductablePosition =
 				Vector3.MoveTowards(abductablePosition, m_AttractorPosition, Time.deltaTime * liftSpeed);
 			var distance = (abductablePosition - m_AttractorPosition).magnitude;
-			if (distance < 0.10f) Destroy(this);
+			if (distance < 0.10f){
+				playerScore.score += 1;
+				 Destroy(this);
+			}
 			else transform.position = abductablePosition;
 		}
 

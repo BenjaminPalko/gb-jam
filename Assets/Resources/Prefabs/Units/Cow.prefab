@@ -199,6 +199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liftSpeed: 1
   fallSpeed: 1
+  scareRadius: 4
+  playerScore: {fileID: 11400000, guid: 99255e60d8c47ce4f8e759f429cd880d, type: 2}
 --- !u!114 &8575663725164569495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5616182064c81c14ea479e105bda41fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 4
+  wanderRadius: 4
 --- !u!195 &5163545337674192703
 NavMeshAgent:
   m_ObjectHideFlags: 0
