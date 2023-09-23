@@ -48,11 +48,6 @@ namespace Scripts
 			}
 		}
 
-		private void OnEnable()
-		{
-			StartWander();
-		}
-
 		private void OnDisable()
 		{
 			StopWander();
@@ -60,7 +55,7 @@ namespace Scripts
 
 		private void OnDestroy()
 		{
-			StartWander();
+			StopWander();
 		}
 
 		private static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
@@ -95,6 +90,7 @@ namespace Scripts
 		{
 			while (true)
 			{
+				yield return new WaitForSecondsRealtime(1);
 				yield return new WaitUntil(() => m_NavMeshAgent.velocity == Vector3.zero);
 				m_Animator.SetBool(Abducting, false);
 				m_NavMeshAgent.speed = walkSpeed;
@@ -120,19 +116,20 @@ namespace Scripts
 
 		private void StopWander()
 		{
+			if(m_NavMeshAgent.enabled) m_NavMeshAgent.ResetPath();
 			if (m_WanderCoroutine == null) return;
 			StopCoroutine(m_WanderCoroutine);
-			m_NavMeshAgent.ResetPath();
 			m_WanderCoroutine = null;
 		}
 
 		public void RunFrom(Vector3 position)
 		{
-			Vector3 runTo = running_distance_multiplier * transform.position  - position;
+			Vector3 runTo = running_distance_multiplier * (transform.position  - position);
 			NavMeshHit hit;
 			NavMesh.SamplePosition(runTo, out hit, wanderRadius, -1);
 			m_NavMeshAgent.speed = runSpeed;
-			m_NavMeshAgent.SetDestination(hit.position);
+			var destination = runTo != Vector3.zero ? hit.position : RandomNavSphere(transform.position, running_distance_multiplier * wanderRadius, -1);
+			m_NavMeshAgent.SetDestination(destination);
 			m_Animator.SetBool(Abducting, true);
 			m_Animator.SetInteger(Speed, 2);
 		}

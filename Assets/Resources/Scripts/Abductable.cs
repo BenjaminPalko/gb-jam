@@ -77,6 +77,7 @@ namespace Scripts {
 		private void Ground() {
 			m_Immobilize = false;
 			m_CowBehaviour.enabled = true;
+			m_CowBehaviour.Scare(transform.position);
 		}
 	}
 }
