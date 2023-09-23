@@ -10,6 +10,8 @@ namespace Scripts {
 		[SerializeField] private float liftSpeed = 1.0f;
 		[SerializeField] private float fallSpeed = 1.0f;
 
+		[SerializeField] private float scareRadius = 4.0f;
+
 		private Animator m_Animator;
 		private Vector3 m_AttractorPosition;
 		private CowBehaviour m_CowBehaviour;
@@ -36,6 +38,16 @@ namespace Scripts {
 			m_OriginalPosition = transform.position;
 			m_AttractorPosition = saucerPosition;
 			m_Immobilize = true;
+			var nearByColliders = Physics2D.OverlapCircleAll(transform.position, scareRadius);
+			
+			foreach(Collider2D collider in nearByColliders) {
+				if(collider.TryGetComponent<Abductable>(out var otherAbductable) && this != otherAbductable){
+					if (collider.TryGetComponent<CowBehaviour>(out var otherCowBehaviour)) {
+						otherCowBehaviour.Scare(transform.position);
+					}
+				}
+			}
+			
 		}
 
 		public void StopAbduction() {
@@ -65,6 +77,7 @@ namespace Scripts {
 		private void Ground() {
 			m_Immobilize = false;
 			m_CowBehaviour.enabled = true;
+			m_CowBehaviour.Scare(transform.position);
 		}
 	}
 }
