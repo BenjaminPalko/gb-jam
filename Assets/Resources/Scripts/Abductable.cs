@@ -1,4 +1,5 @@
-﻿using ScoreSystem;
+﻿using Resources.Scripts;
+using ScoreSystem;
 using UnityEngine;
 
 namespace Scripts {
@@ -41,15 +42,14 @@ namespace Scripts {
 			m_AttractorPosition = saucerPosition;
 			m_Immobilize = true;
 			var nearByColliders = Physics2D.OverlapCircleAll(transform.position, scareRadius);
-			
-			foreach(Collider2D collider in nearByColliders) {
-				if(collider.TryGetComponent<Abductable>(out var otherAbductable) && this != otherAbductable){
+
+			foreach (Collider2D collider in nearByColliders) {
+				if (collider.TryGetComponent<Abductable>(out var otherAbductable) && this != otherAbductable) {
 					if (collider.TryGetComponent<CowBehaviour>(out var otherCowBehaviour)) {
 						otherCowBehaviour.Scare(transform.position);
 					}
 				}
 			}
-			
 		}
 
 		public void StopAbduction() {
@@ -65,7 +65,7 @@ namespace Scripts {
 			var distance = (abductablePosition - m_AttractorPosition).magnitude;
 			if (distance < 0.10f){
 				SingletonGameData.Instance.playerScore.score += 1;
-				 Destroy(this);
+				Spawner.instance.Despawn(m_CowBehaviour);
 			}
 			else transform.position = abductablePosition;
 		}

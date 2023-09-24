@@ -17,6 +17,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 0cd9b0003832aab478bf92c013bf40cf, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 0cd9b0003832aab478bf92c013bf40cf, type: 3}
       propertyPath: m_SortingLayerID
       value: -475167967
       objectReference: {fileID: 0}
@@ -116,7 +120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   despawnDelay: 2
-  speed: 1
 --- !u!50 &4236717657459217680
 Rigidbody2D:
   serializedVersion: 4
