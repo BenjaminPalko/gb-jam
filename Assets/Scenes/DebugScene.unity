@@ -301,6 +301,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmer
       objectReference: {fileID: 0}
+    - target: {fileID: 2681227080051013604, guid: c91fab70316edbd489b3a25857f887d1, type: 3}
+      propertyPath: throwPosition.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681227080051013604, guid: c91fab70316edbd489b3a25857f887d1, type: 3}
+      propertyPath: throwPosition.y
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 3974449696870026660, guid: c91fab70316edbd489b3a25857f887d1, type: 3}
       propertyPath: m_Speed
       value: 1
