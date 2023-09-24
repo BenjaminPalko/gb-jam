@@ -61,7 +61,7 @@ namespace Scripts {
 
 		public void IncreaseScore() {
 			playerScore.score += playerScore.currentCombo;
-			playerScore.currentCombo *= 2;
+			if (playerScore.currentCombo <= 128) playerScore.currentCombo *= 2;
 			playerScore.timeRemaining += playerScore.timeBonus;
 			m_ComboCountdown = playerScore.comboCountdown;
 		}
