@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4fb095d617a9d4daa38f1111a9d38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
+  movementSpeed: 5
   cargoOffset: {x: 0, y: -0.5, z: 0}
 --- !u!50 &1821162620862709139
 Rigidbody2D:
