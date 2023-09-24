@@ -14,9 +14,5 @@ namespace Scripts {
 		public static void LoadDebug() {
 			SceneManager.LoadScene("DebugScene");
 		}
-
-		public void OnStart() {
-			LoadDebug();
-		}
 	}
 }
