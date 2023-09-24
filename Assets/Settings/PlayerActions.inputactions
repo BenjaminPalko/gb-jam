@@ -132,7 +132,7 @@
                 {
                     "name": "",
                     "id": "ca53db15-7a37-4a67-b445-54495240556d",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
                     "groups": "Default scheme",
@@ -143,7 +143,7 @@
                 {
                     "name": "",
                     "id": "2a1446ec-3b46-442b-8655-b9181e6da93f",
-                    "path": "<Keyboard>/backspace",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "Default scheme",
