@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Scripts;
 using UnityEngine;
 
@@ -75,18 +76,16 @@ namespace Resources.Scripts {
 			SpawnFarmers();
 		}
 
-		private void DespawnAll() {
-			foreach (var cowBehaviour in m_Cows) {
+		public void DespawnAll() {
+			foreach (var cowBehaviour in m_Cows.ToList().Where(cowBehaviour => cowBehaviour != null)) {
+				m_Cows.Remove(cowBehaviour);
 				Destroy(cowBehaviour.gameObject);
 			}
 
-			m_Cows = new List<CowBehaviour>();
-
-			foreach (var farmerController in m_Farmers) {
+			foreach (var farmerController in m_Farmers.ToList().Where(farmerController => farmerController != null)) {
+				m_Farmers.Remove(farmerController);
 				Destroy(farmerController.gameObject);
 			}
-
-			m_Farmers = new List<FarmerController>();
 		}
 
 		private static Vector2 RandomVector(float innerRadius, float outerRadius) {
