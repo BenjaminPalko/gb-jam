@@ -1,11 +1,10 @@
-using ScoreSystem;
+using Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreView : MonoBehaviour
 {
-    public Score playerScore;
     private TextMeshProUGUI text;
 
     // Start is called before the first frame update
@@ -17,6 +16,6 @@ public class ScoreView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.SetText(playerScore.score.ToString()); 
+        text.SetText(SingletonGameData.Instance.playerScore.score.ToString()); 
     }
 }

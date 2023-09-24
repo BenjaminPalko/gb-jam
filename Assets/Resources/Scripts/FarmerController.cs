@@ -98,6 +98,7 @@ namespace Scripts {
 
 		private IEnumerator Wander() {
 			while (true) {
+				yield return new WaitUntil(() => m_NavMeshAgent.isOnNavMesh);
 				Vector3 direction = Random.insideUnitCircle;
 				Move(direction * wanderRadius + transform.position);
 				yield return new WaitUntil(() => m_NavMeshAgent.velocity != Vector3.zero);

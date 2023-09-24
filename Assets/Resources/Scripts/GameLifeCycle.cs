@@ -1,12 +1,13 @@
-using ScoreSystem;
+using Scripts;
 using UnityEngine;
 
 public class GameLifeCycle : MonoBehaviour
 {
-    public Score playerScore;
-    
+
+    public float timer = 200f;
     void Start()
     {
-        playerScore.score = 0;
+        SingletonGameData.Instance.playerScore.score = 0;
+        SingletonGameData.Instance.playerScore.timeRemaining = timer;
     }
 }

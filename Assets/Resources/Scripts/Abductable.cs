@@ -13,7 +13,6 @@ namespace Scripts {
 
 		[SerializeField] private float scareRadius = 5.0f;
 
-		public Score playerScore;
 
 		private Animator m_Animator;
 		private Vector3 m_AttractorPosition;
@@ -65,7 +64,7 @@ namespace Scripts {
 				Vector3.MoveTowards(abductablePosition, m_AttractorPosition, Time.deltaTime * liftSpeed);
 			var distance = (abductablePosition - m_AttractorPosition).magnitude;
 			if (distance < 0.10f){
-				playerScore.score += 1;
+				SingletonGameData.Instance.playerScore.score += 1;
 				 Destroy(this);
 			}
 			else transform.position = abductablePosition;
