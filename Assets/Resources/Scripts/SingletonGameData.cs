@@ -44,7 +44,7 @@ namespace Scripts {
 			playerScore.timeRemaining -= Time.deltaTime;
 			m_ComboCountdown -= Time.deltaTime;
 			if (playerScore.currentCombo > 1 && m_ComboCountdown <= 0.0f) {
-				playerScore.currentCombo /= 2;
+				if (playerScore.currentCombo <= 128) playerScore.currentCombo /= 2;
 				m_ComboCountdown = playerScore.comboCountdown;
 			}
 
@@ -64,6 +64,10 @@ namespace Scripts {
 			playerScore.currentCombo *= 2;
 			playerScore.timeRemaining += playerScore.timeBonus;
 			m_ComboCountdown = playerScore.comboCountdown;
+		}
+
+		public void ResetCombo() {
+			playerScore.currentCombo = 1;
 		}
 
 		private void TriggerCallbacks() {

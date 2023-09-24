@@ -55,8 +55,9 @@ namespace Scripts {
 		}
 
 		private IEnumerator StunPlayer() {
+			SingletonGameData.Instance.ResetCombo();
 			m_Animator.SetBool(Hurt, true);
-			m_Movement = Vector3.zero;
+			immobilize = true;
 			if (!m_AudioSource.isPlaying) m_AudioSource.PlayOneShot(m_StunClips[Random.Range(0, m_StunClips.Count)]);
 			if (m_Abductable) {
 				m_Abductable.StopAbduction();
@@ -64,6 +65,7 @@ namespace Scripts {
 			}
 
 			yield return new WaitForSeconds(0.5f);
+			immobilize = false;
 			m_Stunned = null;
 			m_Animator.SetBool(Hurt, false);
 		}
@@ -81,7 +83,6 @@ namespace Scripts {
 		}
 
 		public void OnMove(InputValue inputValue) {
-			if (m_Stunned != null) return;
 			m_Movement = inputValue.Get<Vector2>();
 		}
 
