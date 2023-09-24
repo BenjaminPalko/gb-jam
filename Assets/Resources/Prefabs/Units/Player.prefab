@@ -157,6 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   cargoOffset: {x: 0, y: -0.5, z: 0}
+  pauseMenu: {fileID: 0}
 --- !u!50 &1821162620862709139
 Rigidbody2D:
   serializedVersion: 4
@@ -236,7 +237,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6588804361131679901}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6ad093895bcc83c43ab5fe7538847666, type: 3}

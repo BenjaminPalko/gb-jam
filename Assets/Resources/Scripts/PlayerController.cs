@@ -14,7 +14,7 @@ namespace Scripts {
 
 		public bool immobilize { get; private set; }
 
-		public Canvas pauseMenu;
+		public GameObject pauseMenu;
 		private bool m_Paused;
 
 		private void Awake() {
