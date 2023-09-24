@@ -96,7 +96,7 @@ namespace Scripts {
 
 		private void Attack(Vector2 target) {
 			if (m_Cooldown || m_PitchforkController || !m_Aggravated) return;
-			m_PitchforkController = Instantiate(pitchFork, transform).GetComponent<PitchforkController>();
+			m_PitchforkController = Instantiate(pitchFork).GetComponent<PitchforkController>();
 			m_Animator.SetTrigger(Throw);
 			m_PitchforkController.Throw(target);
 			StartCoroutine(AttackCooldown(1 / fireRate));

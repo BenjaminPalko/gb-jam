@@ -27,7 +27,7 @@ namespace Scripts {
 
 		private void Update() {
 			if (!m_Throw) return;
-			if (transform.position.y < m_InitialPosition.y) {
+			if (transform.position.y < m_InitialPosition.y - 0.5f) {
 				Land();
 				return;
 			}
