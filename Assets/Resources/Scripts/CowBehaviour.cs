@@ -69,6 +69,7 @@ namespace Scripts
 		{
 			while (true)
 			{
+				yield return new WaitUntil(() => m_NavMeshAgent.isOnNavMesh);
 				var destination = RandomNavSphere(transform.position, wanderRadius, -1);
 				if (destination != transform.position)
 				{
@@ -90,7 +91,7 @@ namespace Scripts
 		{
 			while (true)
 			{
-				yield return new WaitForSecondsRealtime(1);
+				yield return new WaitForSecondsRealtime(0.4f);
 				yield return new WaitUntil(() => m_NavMeshAgent.velocity == Vector3.zero);
 				m_Animator.SetBool(Abducting, false);
 				m_NavMeshAgent.speed = walkSpeed;
