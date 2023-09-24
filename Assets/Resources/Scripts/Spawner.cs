@@ -9,12 +9,12 @@ namespace Resources.Scripts {
 		[SerializeField] private int farmers;
 
 		[SerializeField] private float visionRadius;
-		private readonly List<CowBehaviour> m_Cows = new();
-		private readonly List<FarmerController> m_Farmers = new();
 		private CircleCollider2D m_Collider2D;
 
 		private GameObject m_CowPrefab;
+		private List<CowBehaviour> m_Cows = new();
 		private GameObject m_FarmerPrefab;
+		private List<FarmerController> m_Farmers = new();
 
 		public static Spawner instance { get; private set; }
 
@@ -77,14 +77,16 @@ namespace Resources.Scripts {
 
 		private void DespawnAll() {
 			foreach (var cowBehaviour in m_Cows) {
-				m_Cows.Remove(cowBehaviour);
 				Destroy(cowBehaviour.gameObject);
 			}
 
+			m_Cows = new List<CowBehaviour>();
+
 			foreach (var farmerController in m_Farmers) {
-				m_Farmers.Remove(farmerController);
 				Destroy(farmerController.gameObject);
 			}
+
+			m_Farmers = new List<FarmerController>();
 		}
 
 		private static Vector2 RandomVector(float innerRadius, float outerRadius) {

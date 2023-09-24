@@ -139,6 +139,86 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Reticle_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 26
+      width: 32
+      height: 14
+    spriteID: e4f866721b19c2c4799c9002feb0205b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 26}
+  - name: Reticle_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 48
+      width: 32
+      height: 14
+    spriteID: b9d259d156fae834193268c3b4731193
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 48}
+  - name: Reticle_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 70
+      width: 32
+      height: 14
+    spriteID: 0140d883a3c6dae4ca361a6309cd57dd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 70}
+  - name: Reticle_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 92
+      width: 32
+      height: 14
+    spriteID: 3a1d40b664ae80d45a382cdbadb8cc8c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 92}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -148,7 +228,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Reticle
+    - name: Reticle_Frame_0
       frameIndex: 0
       cellRect:
         x: 0
@@ -156,6 +236,38 @@ ScriptedImporter:
         width: 32
         height: 14
       spriteId: 31028641d7efc064db6fafcd0909abcb
+    - name: Reticle_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 0
+        y: 1
+        width: 32
+        height: 14
+      spriteId: e4f866721b19c2c4799c9002feb0205b
+    - name: Reticle_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 0
+        y: 1
+        width: 32
+        height: 14
+      spriteId: b9d259d156fae834193268c3b4731193
+    - name: Reticle_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 0
+        y: 1
+        width: 32
+        height: 14
+      spriteId: 0140d883a3c6dae4ca361a6309cd57dd
+    - name: Reticle_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 0
+        y: 1
+        width: 32
+        height: 14
+      spriteId: 3a1d40b664ae80d45a382cdbadb8cc8c
     linkedCells: []
     parentIndex: -1
   platformSettings:

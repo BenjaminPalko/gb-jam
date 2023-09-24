@@ -2,13 +2,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Scripts {
-	[RequireComponent(typeof(PlayerInput))]
+	[RequireComponent(typeof(PlayerInput), typeof(AudioSource))]
 	public class PlayerController : MonoBehaviour {
 		[SerializeField] private float movementSpeed = 1.0f;
 		[SerializeField] private Vector3 cargoOffset;
-
 		private Abductable m_Abductable;
+		private AudioSource m_AudioSource;
 		private Vector3 m_Movement;
+
 		private TargetReticle m_TargetReticle;
 
 		public bool immobilize { get; private set; }
@@ -16,6 +17,7 @@ namespace Scripts {
 		private void Awake() {
 			m_TargetReticle = GetComponentInChildren<TargetReticle>();
 			if (!m_TargetReticle) Debug.LogError("TargetReticle not found on child component!");
+			m_AudioSource = GetComponent<AudioSource>();
 		}
 
 		private void Update() {
@@ -30,10 +32,12 @@ namespace Scripts {
 
 		public void OnMove(InputValue inputValue) {
 			m_Movement = inputValue.Get<Vector2>();
+			m_AudioSource.pitch = m_Movement != Vector3.zero ? 1.1f : 1.0f;
 		}
 
 		public void OnA(InputValue inputValue) {
 			immobilize = inputValue.isPressed;
+			m_AudioSource.pitch = immobilize ? 0.85f : 1.0f;
 			if (immobilize) {
 				var minDistance = Mathf.Infinity;
 				var position = m_TargetReticle.transform.position;
