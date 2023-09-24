@@ -17,9 +17,9 @@ namespace Scripts {
 
 		private SpriteRenderer m_SpriteRenderer;
 		private IEnumerator m_WanderCoroutine;
-		private float runSpeed = 5f;
+		public float runSpeed = 5f;
 
-		private float walkSpeed = 3.5f;
+		public float walkSpeed = 2.5f;
 
 		private void Awake() {
 			m_NavMeshAgent = GetComponent<NavMeshAgent>();

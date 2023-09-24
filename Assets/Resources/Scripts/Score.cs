@@ -14,6 +14,11 @@ namespace Scripts {
 		}
 
 		public void ResetScore() {
+			timeRemaining = 20;
+			timeBonus = 2.0f;
+			score = 0;
+			currentCombo = 1;
+			comboCountdown = 5.0f;
 		}
 	}
 }
