@@ -6,6 +6,7 @@ namespace ScoreSystem {
         public int score;
 
         public float timeRemaining = 20;
+        public int currentCombo = 0;
     }
 
 

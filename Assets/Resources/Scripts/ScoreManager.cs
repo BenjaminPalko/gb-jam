@@ -14,7 +14,6 @@ public class ScoreManager : MonoBehaviour
     private IEnumerator scoreCoroutine;
 
     private float timeRemaining = 5f;
-    private int currentCombo = 0;
     private GameObject comboTextInstance;
 
 
@@ -38,7 +37,7 @@ public class ScoreManager : MonoBehaviour
 
     
      void reduceTime(){
-        if (currentCombo != 0)
+        if (SingletonGameData.Instance.playerScore.currentCombo != 0)
         {
             if (timeRemaining > 0)
             {
@@ -46,7 +45,7 @@ public class ScoreManager : MonoBehaviour
             }
             else
             {
-               currentCombo = 0;
+               SingletonGameData.Instance.playerScore.currentCombo = 0;
                Destroy(comboTextInstance);
                comboTextInstance = null;
             }
@@ -61,8 +60,10 @@ public class ScoreManager : MonoBehaviour
             {
                 comboQueue.Dequeue();
                 timeRemaining = 5f;
-                currentCombo += 1;
-                Debug.Log(currentCombo);
+                SingletonGameData.Instance.playerScore.currentCombo += 1;
+                SingletonGameData.Instance.playerScore.score -= 1;
+                SingletonGameData.Instance.playerScore.score += SingletonGameData.Instance.playerScore.currentCombo;
+                previousGameScore = SingletonGameData.Instance.playerScore.score;
 
                 GameObject scoreTextInstance = Instantiate(scoreTextPrefab);
                 scoreTextInstance.transform.SetParent(transform, false);
@@ -76,7 +77,7 @@ public class ScoreManager : MonoBehaviour
 
                 var currentComboText = comboTextInstance.GetComponent<TextMeshProUGUI>();
                 
-                currentComboText.SetText("+" + currentCombo.ToString());
+                currentComboText.SetText("+" + SingletonGameData.Instance.playerScore.currentCombo.ToString());
 
                 // Destroy the text instance after a delay (adjust this delay as needed)
                 Destroy(scoreTextInstance, 1.0f);
