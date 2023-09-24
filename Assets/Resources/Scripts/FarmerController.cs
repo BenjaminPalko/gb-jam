@@ -55,6 +55,12 @@ namespace Scripts {
 			if (Mathf.Abs(m_NavMeshAgent.velocity.x) > 0.10f) m_SpriteRenderer.flipX = m_NavMeshAgent.velocity.x < 0;
 		}
 
+		private void OnDestroy() {
+			if (m_WanderingCoroutine != null) {
+				StopCoroutine(m_WanderingCoroutine);
+			}
+		}
+
 		private Vector3 TargetPosition(Vector3 target) {
 			var temp = throwPosition + Vector3.zero;
 			var diff = transform.position - target;

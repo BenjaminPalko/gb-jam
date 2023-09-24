@@ -37,7 +37,6 @@ namespace Resources.Scripts {
 
 		private void OnDestroy() {
 			DespawnAll();
-			Destroy(gameObject);
 		}
 
 		private void OnTriggerExit2D(Collider2D other) {
@@ -79,12 +78,12 @@ namespace Resources.Scripts {
 		private void DespawnAll() {
 			foreach (var cowBehaviour in m_Cows) {
 				m_Cows.Remove(cowBehaviour);
-				Destroy(cowBehaviour);
+				Destroy(cowBehaviour.gameObject);
 			}
 
 			foreach (var farmerController in m_Farmers) {
 				m_Farmers.Remove(farmerController);
-				Destroy(farmerController);
+				Destroy(farmerController.gameObject);
 			}
 		}
 
