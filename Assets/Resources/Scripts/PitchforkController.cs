@@ -27,7 +27,7 @@ namespace Scripts {
 
 		private void Update() {
 			if (!m_Throw) return;
-			if (transform.position.y < m_InitialPosition.y) {
+			if (transform.position.y < m_InitialPosition.y - 0.5f) {
 				Land();
 				return;
 			}
@@ -37,11 +37,12 @@ namespace Scripts {
 
 		private void OnDestroy() {
 			if (m_DespawnCoroutine != null) StopCoroutine(m_DespawnCoroutine);
-			Destroy(gameObject);
 		}
 
 		private void OnCollisionEnter2D(Collision2D other) {
-			if (other.gameObject.TryGetComponent<PlayerController>(out _)) Destroy(this);
+			if (!other.gameObject.TryGetComponent<PlayerController>(out var playerController)) return;
+			playerController.Stun();
+			Destroy(gameObject);
 		}
 
 		public void Throw(Vector2 target) {
@@ -75,7 +76,7 @@ namespace Scripts {
 
 		private IEnumerator WaitThenDespawn(float wait = 1.0f) {
 			yield return new WaitForSeconds(wait);
-			Destroy(this);
+			Destroy(gameObject);
 		}
 	}
 }
