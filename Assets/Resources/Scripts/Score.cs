@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Scripts {
 	[CreateAssetMenu]
 	public class Score : ScriptableObject {
-		public float timeRemaining = 20;
+		public float timeRemaining = 200;
 		public float timeBonus = 2.0f;
 		public int score;
 		public int currentCombo = 1;
@@ -14,7 +14,7 @@ namespace Scripts {
 		}
 
 		public void ResetScore() {
-			timeRemaining = 20;
+			timeRemaining = 200;
 			timeBonus = 2.0f;
 			score = 0;
 			currentCombo = 1;
