@@ -41,7 +41,6 @@ namespace Resources.Scripts {
 		}
 
 		private void OnTriggerExit2D(Collider2D other) {
-			Debug.Log($"Exited spawn trigger: {other.name}");
 			if (other.TryGetComponent<CowBehaviour>(out var cowBehaviour)) Despawn(cowBehaviour);
 			if (other.TryGetComponent<FarmerController>(out var farmerController)) Despawn(farmerController);
 		}
@@ -66,14 +65,12 @@ namespace Resources.Scripts {
 		}
 
 		public void Despawn(CowBehaviour cow) {
-			Debug.Log($"Despawn: {cow.name}");
 			m_Cows.Remove(cow);
 			Destroy(cow.gameObject);
 			SpawnCows();
 		}
 
 		public void Despawn(FarmerController farmer) {
-			Debug.Log($"Despawn: {farmer.name}");
 			m_Farmers.Remove(farmer);
 			Destroy(farmer.gameObject);
 			SpawnFarmers();
