@@ -12,5 +12,8 @@ namespace Scripts {
 		public override string ToString() {
 			return $"Score: {score}, Combo: {currentCombo}, ComboCountdown: {comboCountdown}, Time: {timeRemaining}";
 		}
+
+		public void ResetScore() {
+		}
 	}
 }
