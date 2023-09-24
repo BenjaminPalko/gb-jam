@@ -1,18 +1,21 @@
-﻿using Resources.Scripts;
+﻿using System.Collections.Generic;
+using Resources.Scripts;
 using UnityEngine;
 
 namespace Scripts {
 	[
 		RequireComponent(typeof(Collider2D), typeof(Rigidbody2D), typeof(Animator)),
-		RequireComponent(typeof(CowBehaviour))
+		RequireComponent(typeof(CowBehaviour), typeof(AudioSource))
 	]
 	public class Abductable : MonoBehaviour {
 		private static readonly int Abducting = Animator.StringToHash("abducting");
+
 		[SerializeField] private float liftSpeed = 1.0f;
 		[SerializeField] private float fallSpeed = 1.0f;
-
 		[SerializeField] private float scareRadius = 5.0f;
-
+		[SerializeField] private AudioSource abductionSource;
+		[SerializeField] private AudioSource mooSource;
+		[SerializeField] private List<AudioClip> mooClips = new();
 
 		private Animator m_Animator;
 		private Vector3 m_AttractorPosition;
@@ -31,6 +34,8 @@ namespace Scripts {
 		}
 
 		public void StartAbduction(Vector3 saucerPosition) {
+			abductionSource.Play();
+			if (!mooSource.isPlaying) mooSource.PlayOneShot(mooClips[Random.Range(0, mooClips.Count)]);
 			m_Animator.SetBool(Abducting, true);
 			m_CowBehaviour.enabled = false;
 			m_OriginalPosition = transform.position;
@@ -48,6 +53,7 @@ namespace Scripts {
 		}
 
 		public void StopAbduction() {
+			abductionSource.Stop();
 			m_Animator.SetBool(Abducting, false);
 			m_AttractorPosition = Vector3.zero;
 			m_OriginalPosition.x = transform.position.x;

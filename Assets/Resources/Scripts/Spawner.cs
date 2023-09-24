@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Scripts;
 using UnityEngine;
 
@@ -9,12 +10,12 @@ namespace Resources.Scripts {
 		[SerializeField] private int farmers;
 
 		[SerializeField] private float visionRadius;
-		private readonly List<CowBehaviour> m_Cows = new();
-		private readonly List<FarmerController> m_Farmers = new();
 		private CircleCollider2D m_Collider2D;
 
 		private GameObject m_CowPrefab;
+		private List<CowBehaviour> m_Cows = new();
 		private GameObject m_FarmerPrefab;
+		private List<FarmerController> m_Farmers = new();
 
 		public static Spawner instance { get; private set; }
 
@@ -75,13 +76,13 @@ namespace Resources.Scripts {
 			SpawnFarmers();
 		}
 
-		private void DespawnAll() {
-			foreach (var cowBehaviour in m_Cows) {
+		public void DespawnAll() {
+			foreach (var cowBehaviour in m_Cows.ToList().Where(cowBehaviour => cowBehaviour != null)) {
 				m_Cows.Remove(cowBehaviour);
 				Destroy(cowBehaviour.gameObject);
 			}
 
-			foreach (var farmerController in m_Farmers) {
+			foreach (var farmerController in m_Farmers.ToList().Where(farmerController => farmerController != null)) {
 				m_Farmers.Remove(farmerController);
 				Destroy(farmerController.gameObject);
 			}
