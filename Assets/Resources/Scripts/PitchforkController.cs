@@ -76,7 +76,7 @@ namespace Scripts {
 
 		private IEnumerator WaitThenDespawn(float wait = 1.0f) {
 			yield return new WaitForSeconds(wait);
-			Destroy(this);
+			Destroy(gameObject);
 		}
 	}
 }
