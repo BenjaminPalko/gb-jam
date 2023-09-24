@@ -29,7 +29,6 @@ namespace Scripts {
 			var currentQuadrant = CalculateCurrentQuadrant(playerPosition, m_CurrentCell);
 			CreateNavmesh(currentQuadrant, m_CurrentCell);
 			m_Quadrant = currentQuadrant;
-			WriteQuadrant(m_CurrentCell);
 		}
 
 		private void Update() {
@@ -41,7 +40,6 @@ namespace Scripts {
 			if (cellLocation != m_CurrentCell) {
 				m_CurrentCell = cellLocation;
 				m_Quadrant = currentQuadrant;
-				WriteQuadrant(cellLocation);
 				return;
 			}
 
@@ -49,7 +47,6 @@ namespace Scripts {
 
 			UpdateNavmesh(currentQuadrant, cellLocation);
 			m_Quadrant = currentQuadrant;
-			WriteQuadrant(cellLocation);
 		}
 
 		private int CalculateCurrentQuadrant(Vector3 playerPosition, Vector3Int cellLocation) {
@@ -100,10 +97,6 @@ namespace Scripts {
 			}
 
 			navMeshSurface.BuildNavMeshAsync();
-		}
-
-		private void WriteQuadrant(Vector3Int tilePosition) {
-			Debug.Log($"Quadrant {m_Quadrant} at tile {tilePosition}");
 		}
 
 		private void UpdateNavmesh(int newQuadrant, Vector3Int cellLocation) {

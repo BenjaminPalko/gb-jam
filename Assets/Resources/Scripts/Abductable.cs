@@ -1,5 +1,4 @@
 ﻿using Resources.Scripts;
-using ScoreSystem;
 using UnityEngine;
 
 namespace Scripts {
@@ -31,10 +30,6 @@ namespace Scripts {
 			else if (m_Immobilize) Fall();
 		}
 
-		private void OnDestroy() {
-			Destroy(gameObject);
-		}
-
 		public void StartAbduction(Vector3 saucerPosition) {
 			m_Animator.SetBool(Abducting, true);
 			m_CowBehaviour.enabled = false;
@@ -63,11 +58,10 @@ namespace Scripts {
 			abductablePosition =
 				Vector3.MoveTowards(abductablePosition, m_AttractorPosition, Time.deltaTime * liftSpeed);
 			var distance = (abductablePosition - m_AttractorPosition).magnitude;
-			if (distance < 0.10f){
-				SingletonGameData.Instance.playerScore.score += 1;
+			if (distance < 0.10f) {
+				SingletonGameData.Instance.IncreaseScore();
 				Spawner.instance.Despawn(m_CowBehaviour);
-			}
-			else transform.position = abductablePosition;
+			} else transform.position = abductablePosition;
 		}
 
 		private void Fall() {

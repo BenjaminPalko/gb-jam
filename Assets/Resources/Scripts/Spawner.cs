@@ -37,11 +37,9 @@ namespace Resources.Scripts {
 
 		private void OnDestroy() {
 			DespawnAll();
-			Destroy(gameObject);
 		}
 
 		private void OnTriggerExit2D(Collider2D other) {
-			Debug.Log($"Exited spawn trigger: {other.name}");
 			if (other.TryGetComponent<CowBehaviour>(out var cowBehaviour)) Despawn(cowBehaviour);
 			if (other.TryGetComponent<FarmerController>(out var farmerController)) Despawn(farmerController);
 		}
@@ -66,14 +64,12 @@ namespace Resources.Scripts {
 		}
 
 		public void Despawn(CowBehaviour cow) {
-			Debug.Log($"Despawn: {cow.name}");
 			m_Cows.Remove(cow);
 			Destroy(cow.gameObject);
 			SpawnCows();
 		}
 
 		public void Despawn(FarmerController farmer) {
-			Debug.Log($"Despawn: {farmer.name}");
 			m_Farmers.Remove(farmer);
 			Destroy(farmer.gameObject);
 			SpawnFarmers();
@@ -82,12 +78,12 @@ namespace Resources.Scripts {
 		private void DespawnAll() {
 			foreach (var cowBehaviour in m_Cows) {
 				m_Cows.Remove(cowBehaviour);
-				Destroy(cowBehaviour);
+				Destroy(cowBehaviour.gameObject);
 			}
 
 			foreach (var farmerController in m_Farmers) {
 				m_Farmers.Remove(farmerController);
-				Destroy(farmerController);
+				Destroy(farmerController.gameObject);
 			}
 		}
 
