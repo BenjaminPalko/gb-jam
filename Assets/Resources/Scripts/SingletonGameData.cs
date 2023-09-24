@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Resources.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,15 +28,19 @@ namespace Scripts {
 		}
 
 		private void Start() {
-			playerScore.ResetScore();;
+			Time.timeScale = 1.0f;
+			playerScore.ResetScore();
+			;
 			TriggerCallbacks();
 		}
 
 		private void Update() {
 			if (playerScore.timeRemaining <= 0.0f) {
 				Time.timeScale = 0.0f;
+				Spawner.instance.DespawnAll();
 				SceneManager.LoadScene("GameOverScene");
 			}
+
 			playerScore.timeRemaining -= Time.deltaTime;
 			m_ComboCountdown -= Time.deltaTime;
 			if (playerScore.currentCombo > 1 && m_ComboCountdown <= 0.0f) {
