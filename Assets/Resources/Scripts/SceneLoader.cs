@@ -10,9 +10,5 @@ namespace Scripts {
 		public static void LoadGame() {
 			SceneManager.LoadScene("GameScene");
 		}
-
-		public static void LoadDebug() {
-			SceneManager.LoadScene("DebugScene");
-		}
 	}
 }

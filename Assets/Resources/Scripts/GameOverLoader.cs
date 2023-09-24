@@ -3,7 +3,7 @@
 namespace Resources.Scripts {
 	public class GameOverLoader : SceneLoader {
 		public void OnStart() {
-			LoadDebug();
+			LoadGame();
 			UnityEngine.Resources.Load<Score>("Objects/PlayerScore").ResetScore();
 		}
 	}
