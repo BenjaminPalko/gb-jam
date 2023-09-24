@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68580ca5d530fe419754e28b9b4df63, type: 3}
   m_Name: PlayerScore
   m_EditorClassIdentifier: 
-  timeRemaining: 120
+  timeRemaining: 5
   timeBonus: 2
   score: 0
   currentCombo: 1

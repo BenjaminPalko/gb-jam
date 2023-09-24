@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scripts {
 	public class SingletonGameData : MonoBehaviour {
@@ -8,7 +9,6 @@ namespace Scripts {
 		private readonly List<Action<Score>> m_Callbacks = new();
 		private float m_ComboCountdown;
 
-		private Score m_DefaultScore;
 
 		public static SingletonGameData Instance { get; private set; }
 
@@ -19,21 +19,23 @@ namespace Scripts {
 			}
 
 			Instance = this;
-			m_DefaultScore = UnityEngine.Resources.Load<Score>("Objects/PlayerScore");
 		}
 
 		public void Reset() {
-			playerScore = Instantiate(m_DefaultScore);
+			playerScore.ResetScore();
 			TriggerCallbacks();
 		}
 
 		private void Start() {
-			playerScore = Instantiate(m_DefaultScore);
+			playerScore.ResetScore();;
 			TriggerCallbacks();
 		}
 
 		private void Update() {
-			if (playerScore.timeRemaining <= 0.0f) Time.timeScale = 0.0f;
+			if (playerScore.timeRemaining <= 0.0f) {
+				Time.timeScale = 0.0f;
+				SceneManager.LoadScene("GameOverScene");
+			}
 			playerScore.timeRemaining -= Time.deltaTime;
 			m_ComboCountdown -= Time.deltaTime;
 			if (playerScore.currentCombo > 1 && m_ComboCountdown <= 0.0f) {

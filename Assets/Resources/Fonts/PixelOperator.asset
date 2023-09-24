@@ -60,9 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: PixelOperator
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 769679848
   material: {fileID: 7302058448708508323}
-  materialHashCode: 0
+  materialHashCode: -1699644600
   m_Version: 1.1.0
   m_SourceFontFileGUID: 279d213e344520043af99956f7eb14e1
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 279d213e344520043af99956f7eb14e1, type: 3}

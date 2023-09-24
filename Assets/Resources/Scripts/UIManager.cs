@@ -31,7 +31,7 @@ namespace Resources.Scripts {
 		private void SetTimer(float value) {
 			float minutes = Mathf.FloorToInt(value / 60);
 			float seconds = Mathf.FloorToInt(value % 60);
-			timerText.text = $"{minutes:00}:{seconds:00}";
+			if(seconds >=0 && minutes >= 0) timerText.text = $"{minutes:00}:{seconds:00}";
 		}
 
 		private void SetScore(int value) {
