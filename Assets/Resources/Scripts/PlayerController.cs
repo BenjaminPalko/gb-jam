@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 namespace Scripts {
 	[RequireComponent(typeof(PlayerInput), typeof(AudioSource))]
 	public class PlayerController : MonoBehaviour {
-		[SerializeField] private float movementSpeed = 1.0f;
+		[SerializeField] private float movementSpeed = 2.0f;
 		[SerializeField] private Vector3 cargoOffset;
 		private Abductable m_Abductable;
 		private AudioSource m_AudioSource;
@@ -13,6 +13,9 @@ namespace Scripts {
 		private TargetReticle m_TargetReticle;
 
 		public bool immobilize { get; private set; }
+
+		public Canvas pauseMenu;
+		private bool m_Paused;
 
 		private void Awake() {
 			m_TargetReticle = GetComponentInChildren<TargetReticle>();
@@ -23,6 +26,20 @@ namespace Scripts {
 		private void Update() {
 			if (m_Movement != Vector3.zero && !immobilize) Movement();
 		}
+
+		private void Resume()
+		{
+			Time.timeScale = 1.0f;
+			pauseMenu.gameObject.SetActive(false);
+			m_Paused = false;
+		}
+
+    	private void Pause()
+    	{
+			Time.timeScale = 0.0f;
+			pauseMenu.gameObject.SetActive(true);
+			m_Paused = true;
+    	}
 
 		private void OnDrawGizmos() {
 			var position = transform.position + cargoOffset;
@@ -38,7 +55,7 @@ namespace Scripts {
 		public void OnA(InputValue inputValue) {
 			immobilize = inputValue.isPressed;
 			m_AudioSource.pitch = immobilize ? 0.85f : 1.0f;
-			if (immobilize) {
+			if (immobilize && !m_Paused) {
 				var minDistance = Mathf.Infinity;
 				var position = m_TargetReticle.transform.position;
 				foreach (var abductable in m_TargetReticle.Abductables) {
@@ -61,11 +78,17 @@ namespace Scripts {
 		}
 
 		public void OnSelect() {
-			Debug.Log("Select Pressed");
+			if(m_Paused){
+				Resume();
+			}else{
+				Pause();
+			}
 		}
 
 		public void OnStart() {
-			Debug.Log("Start Pressed");
+			if(m_Paused){
+				Resume();
+			}
 		}
 
 		private void Movement() {
