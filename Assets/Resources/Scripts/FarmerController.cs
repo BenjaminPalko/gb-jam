@@ -7,23 +7,23 @@ namespace Scripts {
 	public class FarmerController : MonoBehaviour {
 		private static readonly int Moving = Animator.StringToHash("moving");
 		private static readonly int Aggressive = Animator.StringToHash("aggressive");
-		private static readonly int Property = Animator.StringToHash("throw");
+		private static readonly int Throw = Animator.StringToHash("throw");
 
 		[SerializeField] private float fireRate = 0.25f;
 		[SerializeField] private float wanderRadius = 2.0f;
 		[SerializeField] private GameObject pitchFork;
+		[SerializeField] private Vector3 throwPosition;
 
 		[SerializeField] private FarmerTrigger alertTrigger;
-		[SerializeField] private FarmerTrigger attackTrigger;
 		[SerializeField] private FarmerTrigger chaseTrigger;
 		private bool m_Aggravated;
 		private Animator m_Animator;
-		private float m_Cooldown;
+		private bool m_Cooldown;
 		private NavMeshAgent m_NavMeshAgent;
 		private PitchforkController m_PitchforkController;
+
 		private SpriteRenderer m_SpriteRenderer;
 		private IEnumerator m_WanderingCoroutine;
-
 
 		private void Awake() {
 			m_SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,11 +38,12 @@ namespace Scripts {
 		}
 
 		private void Update() {
-			if (m_Cooldown > 0.0f) m_Cooldown -= Time.deltaTime;
-			if (attackTrigger.playerController) {
+			if (chaseTrigger.playerController &&
+			    Vector3.Distance(TargetPosition(chaseTrigger.playerController.transform.position), transform.position) <
+			    0.10f) {
 				m_Animator.SetBool(Moving, false);
 				StopWander();
-				Attack(attackTrigger.playerController.transform.position);
+				Attack(chaseTrigger.playerController.transform.position);
 			} else if (alertTrigger.playerController && alertTrigger.playerController.immobilize) {
 				Chase(alertTrigger.playerController.transform.position);
 			} else if (chaseTrigger.playerController) {
@@ -51,7 +52,14 @@ namespace Scripts {
 				Calm();
 			}
 
-			if (m_NavMeshAgent.velocity != Vector3.zero) m_SpriteRenderer.flipX = m_NavMeshAgent.velocity.x < 0;
+			if (Mathf.Abs(m_NavMeshAgent.velocity.x) > 0.10f) m_SpriteRenderer.flipX = m_NavMeshAgent.velocity.x < 0;
+		}
+
+		private Vector3 TargetPosition(Vector3 target) {
+			var temp = throwPosition + Vector3.zero;
+			var diff = transform.position - target;
+			temp.x *= Mathf.Sign(diff.x);
+			return target + temp;
 		}
 
 		private void Move(Vector3 destination) {
@@ -68,7 +76,7 @@ namespace Scripts {
 			}
 
 			m_Animator.SetBool(Moving, true);
-			Move(alertTrigger.playerController.transform.position);
+			Move(TargetPosition(target));
 		}
 
 		private void Calm() {
@@ -81,12 +89,11 @@ namespace Scripts {
 		}
 
 		private void Attack(Vector2 target) {
-			if (m_NavMeshAgent.velocity != Vector3.zero) m_NavMeshAgent.velocity = Vector3.zero;
-			if (m_Cooldown > 0 || m_PitchforkController) return;
+			if (m_Cooldown || m_PitchforkController || !m_Aggravated) return;
 			m_PitchforkController = Instantiate(pitchFork, transform).GetComponent<PitchforkController>();
-			m_Animator.SetTrigger(Property);
+			m_Animator.SetTrigger(Throw);
 			m_PitchforkController.Throw(target);
-			m_Cooldown = 1 / fireRate;
+			StartCoroutine(AttackCooldown(1 / fireRate));
 		}
 
 		private IEnumerator Wander() {
@@ -111,6 +118,12 @@ namespace Scripts {
 			if (m_WanderingCoroutine == null) return;
 			StopCoroutine(m_WanderingCoroutine);
 			m_WanderingCoroutine = null;
+		}
+
+		private IEnumerator AttackCooldown(float time) {
+			m_Cooldown = true;
+			yield return new WaitForSeconds(time);
+			m_Cooldown = false;
 		}
 	}
 }
