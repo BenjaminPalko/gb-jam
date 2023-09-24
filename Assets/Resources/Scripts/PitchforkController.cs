@@ -37,11 +37,12 @@ namespace Scripts {
 
 		private void OnDestroy() {
 			if (m_DespawnCoroutine != null) StopCoroutine(m_DespawnCoroutine);
-			Destroy(gameObject);
 		}
 
 		private void OnCollisionEnter2D(Collision2D other) {
-			if (other.gameObject.TryGetComponent<PlayerController>(out _)) Destroy(this);
+			if (!other.gameObject.TryGetComponent<PlayerController>(out var playerController)) return;
+			playerController.Stun();
+			Destroy(gameObject);
 		}
 
 		public void Throw(Vector2 target) {
