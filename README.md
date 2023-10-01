@@ -3,6 +3,8 @@
 
 This is an entry for [GBJam-11](https://itch.io/jam/gbjam-11), you can find the game page [here](https://baobeld.itch.io/cowpocalypse).
 
+This game was made with [Unity Game Engine](https://unity.com/)
+
 # Themes 
 The theme for this GameJam was Gameboy, your display was limited to 160x144 pixels and you were only allowed to use 4 colors (yes shades count as colors, so does white... so does black...) with a second theme of "Space".
 
